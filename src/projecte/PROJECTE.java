@@ -26,26 +26,31 @@ public class PROJECTE {
 
         Scanner ent = new Scanner(System.in);
 
-        do {}
-            System.out.println("\n\nMenú del programa.");
-            System.out.println("1. Sortir del programa.");
-            System.out.println("2. Afgir dades dels jugadors.");
-            System.out.println("3. Borrar dades.");
-            System.out.println("4. Modificar dades.");
-            System.out.println("5. Llistar jugadors.");
+        do {
+            System.out.println("Menú del programa.");
+            System.out.println("1. Llistar jugadors.");
+            System.out.println("2. Modificar dades.");
+            System.out.println("3. Afgir dades dels jugadors.");
+            System.out.println("4. Borrar dades.");
+            System.out.println("5. Sortir del programa.");
             switch (opcio = ent.nextInt()) {
-                case 1:
-                    System.out.println("Has sortit del programa");
+                case 1:             
                     break;
                 case 2:
+                    break;
                 case 3:
+                    break;
                 case 4:
-                case 5:
+                    break;
+               case 5:
+                    System.out.println("Has sortit del programa!");
+                    break;
                 default:
                     System.out.println("Opció incorrecta!!\n\n");
             }
-        
-        
+
+        } while (opcio != 5);
+
     }
 
 }
