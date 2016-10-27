@@ -21,7 +21,7 @@ public class PROJECTE {
         String nom = null;
         char posicio = ' ';
         int opcio = 0, dorsal = 0, gols = 0;
-        boolean internacional = false;
+        boolean internacional = false, omplit=false;
         double clausula = 0.0;
 
         Scanner ent = new Scanner(System.in);
@@ -44,7 +44,7 @@ public class PROJECTE {
                     break;
                 case 4:
                     break;
-                case 5:
+                case  5:
                     break;
                 default:
                     System.out.println("Opció incorrecta!!\n\n");
