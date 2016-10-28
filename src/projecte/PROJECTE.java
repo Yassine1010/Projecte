@@ -19,83 +19,141 @@ public class PROJECTE {
     public static void main(String[] args) {
         // variables
         Scanner ent = new Scanner(System.in);
-        Scanner entnum=new Scanner(System.in);
         String nom = null;
-        char posicio , esinternacional;
+        char posicio = 0, esinternacional = 0;
         int opcio = 0, dorsal = 0, gols = 0;
         boolean internacional = false, omplit = false;
         double clausula = 0.0;
-        
 
         do {
-            System.out.println("Menú del programa.");
+            System.out.println("\n\nMenú del programa.");
             System.out.println("1. Sortir del programa.");
             System.out.println("2. Afgir dades dels jugadors.");
             System.out.println("3. Borrar dades.");
             System.out.println("4. Modificar dades.");
             System.out.println("5. Llistar jugadors.");
 
-            switch (opcio = ent.nextInt()) {
+            switch (opcio = ent.skip("[\r\n]*").nextInt()) {
                 case 1:
                     System.out.println("Has sortit del programa!");
                     break;
                 case 2:
                     if (!omplit) {
                         System.out.println("Introdueix el nom del jugador");
-                        nom = ent.next();
+                        nom = ent.skip("[\r\n]*").next();
                         do {
-                        System.out.println("Introdueix la seva posició al camp: A = Delanter, M = Migcampista, D = Defensa, P = Porter. ");   
-                        posicio = ent.next().toUpperCase().charAt(0);  
-                        switch (posicio) {
-                            case 'A':
-                                System.out.println("Delanter");
-                                break;
-                            case 'M':
-                                System.out.println("Migcampista");
-                                break;
-                            case 'D':
-                                System.out.println("Defensa");
-                                break;
-                            case 'P':
-                                System.out.println("Porter");
-                                break;
-                                
-                            default:
-                                System.out.println("Opció incorrecta!!\n\n");
-                                break;
-                        }
+                            System.out.println("Introdueix la seva posició al camp: A = Delanter, M = Migcampista, D = Defensa, P = Porter. ");
+                            posicio = ent.skip("[\r\n]*").next().toUpperCase().charAt(0);
+                            switch (posicio) {
+                                case 'A':
+                                    System.out.println("Delanter");
+                                    break;
+                                case 'M':
+                                    System.out.println("Migcampista");
+                                    break;
+                                case 'D':
+                                    System.out.println("Defensa");
+                                    break;
+                                case 'P':
+                                    System.out.println("Porter");
+                                    break;
+
+                                default:
+                                    System.out.println("Opció incorrecta!!\n\n");
+                                    break;
+                            }
                         } while (posicio != 'A' && posicio != 'M' && posicio != 'D' && posicio != 'P');
-                        
+
                         System.out.println("Introdueix el número del dorsal");
-                        dorsal = entnum.nextInt();
+                        dorsal = ent.skip("[\r\n]*").nextInt();
                         System.out.println("Introdueix el número de gols");
-                        gols = entnum.nextInt();
+                        gols = ent.skip("[\r\n]*").nextInt();
                         System.out.println("És internacional?");
                         System.out.println("S per dir SI, N per NO");
                         do {
-                            esinternacional= ent.next().toUpperCase().charAt(0); 
-                            
-                        } while (esinternacional !='S' && esinternacional !='N');
-                        internacional= (esinternacional=='S');
-                        
+                            esinternacional = ent.skip("[\r\n]*").next().toUpperCase().charAt(0);
+
+                        } while (esinternacional != 'S' && esinternacional != 'N');
+                        internacional = (esinternacional == 'S');
+
                         System.out.println("Introdueix quina clausula te");
-                        clausula = entnum.nextDouble();
-                        omplit=true;
-                    }else{
+                        clausula = ent.skip("[\r\n]*").nextDouble();
+                        System.out.println("\nDades introduïdes correctament!!");
+                        omplit = true;
+
+                    } else {
                         System.out.println("Ja has introduït dades, si vols tornar a omplir, primer borra.");
                     }
                     break;
                 case 3:
+                    if (omplit) {
+                        char esveritat;
+                        boolean veritat;
+                        System.out.println("\n\nVols veure les dades del jugador abans de borrar? (S/N)");
+                        do {
+                            esveritat = ent.skip("[\r\n]*").next().toUpperCase().charAt(0);
+
+                        } while (esveritat != 'S' && esveritat != 'N');
+                        if (veritat = (esveritat == 'S')) {
+                            System.out.println("Dades del jugador\n\n");
+                            System.out.println("Nom: " + nom);
+                            System.out.println("Posició: " + posicio);
+                            System.out.println("Dorsal: " + dorsal);
+                            System.out.println("Gols: " + gols);
+                            System.out.println("Internacional SI-NO: " + esinternacional);
+                            System.out.println("Clausula: " + clausula);
+                            System.out.println("\nVols borrar les dades? (S-N)");
+                            do {
+                                esveritat = ent.skip("[\r\n]*").next().toUpperCase().charAt(0);
+                            } while (esveritat != 'S' && esveritat != 'N');
+                            if (veritat = (esveritat == 'S')) {
+                                System.out.println("Segur? (S-N)");
+                                do {
+                                    esveritat = ent.skip("[\r\n]*").next().toUpperCase().charAt(0);
+                                } while (esveritat != 'S' && esveritat != 'N');
+                                if (veritat = (esveritat == 'S')) {
+                                    System.out.println("\nDades borrades correctament!");
+
+                                    omplit = false;
+                                }
+
+                            } else {
+                                break;
+                            }
+
+                        } else {
+                            do {
+                                esveritat = ent.skip("[\r\n]*").next().toUpperCase().charAt(0);
+                            } while (esveritat != 'S' && esveritat != 'N');
+                            if (veritat = (esveritat == 'S')) {
+                                System.out.println("Segur? (S-N)");
+                                do {
+                                    esveritat = ent.skip("[\r\n]*").next().toUpperCase().charAt(0);
+                                } while (esveritat != 'S' && esveritat != 'N');
+                                if (veritat = (esveritat == 'S')) {
+                                    System.out.println("Dades borrades correctament!");
+                                    omplit = false;
+                                }
+
+                            } else {
+                                break;
+                            }
+                        }
+
+                    } else {
+                        System.out.println("\nLes dades ja estàn borrades");
+
+                    }
                     break;
                 case 4:
                     break;
                 case 5:
                     break;
                 default:
-                    System.out.println("Opció incorrecta!!\n\n");
+                    System.out.println("\n\nOpció incorrecta!!");
             }
 
-        } while (opcio != 5);
+        } while (opcio != 1);
 
     }
 
