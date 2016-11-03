@@ -28,7 +28,7 @@ public class PROJECTE {
         boolean veritat = false;
 
         do {
-            System.out.println("\n\nMenú del programa.");
+            System.out.println("\nMenú del programa.");
             System.out.println("1. Sortir del programa.");
             System.out.println("2. Afgir dades dels jugadors.");
             System.out.println("3. Borrar dades.");
@@ -277,6 +277,19 @@ public class PROJECTE {
                     }
                     break;
                 case 5:
+                    if (omplit) {
+                        
+                        System.out.println("Dades del jugador\n\n");
+                            System.out.println("Nom: " + nom);
+                            System.out.println("Posició: " + posicio);
+                            System.out.println("Dorsal: " + dorsal);
+                            System.out.println("Gols: " + gols);
+                            System.out.println("Internacional SI-NO: " + esinternacional);
+                            System.out.println("Clausula: " + clausula);
+                    
+                    }else{
+                        System.out.println("\nNo hi han dades per mostrar");
+                    }
                     break;
                 default:
                     System.out.println("\n\nOpció incorrecta!!");
