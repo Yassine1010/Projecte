@@ -34,6 +34,7 @@ public class PROJECTE {
             System.out.println("3. Borrar dades.");
             System.out.println("4. Modificar dades.");
             System.out.println("5. Llistar jugadors.");
+            System.out.println("6. Recuperar dades.");
 
             switch (opcio = ent.skip("[\r\n]*").nextInt()) {
                 case 1:
@@ -133,7 +134,7 @@ public class PROJECTE {
                                     esveritat = ent.skip("[\r\n]*").nextLine().toUpperCase().charAt(0);
                                 } while (esveritat != 'S' && esveritat != 'N');
                                 if (veritat = (esveritat == 'S')) {
-                                    System.out.println("Dades borrades correctament!");
+                                    System.out.println("\nDades borrades correctament!");
                                     omplit = false;
                                 }
 
@@ -156,7 +157,7 @@ public class PROJECTE {
 
                         } while (esveritat != 'S' && esveritat != 'N');
                         if (veritat = (esveritat == 'S')) {
-                            System.out.println("Dades del jugador\n\n");
+                            System.out.println("\nDades del jugador\n");
                             System.out.println("Nom: " + nom);
                             System.out.println("Posició: " + posicio);
                             System.out.println("Dorsal: " + dorsal);
@@ -211,7 +212,7 @@ public class PROJECTE {
                                 } while (esveritat != 'S' && esveritat != 'N');
                             }
                             //////----------------------------------------------//////////
-                            
+
                             System.out.println("\nVols modificar el dorsal? (S-N)");
                             do {
                                 esveritat = ent.skip("[\r\n]*").nextLine().toUpperCase().charAt(0);
@@ -278,21 +279,50 @@ public class PROJECTE {
                     break;
                 case 5:
                     if (omplit) {
-                        
-                        System.out.println("Dades del jugador\n\n");
-                            System.out.println("Nom: " + nom);
-                            System.out.println("Posició: " + posicio);
-                            System.out.println("Dorsal: " + dorsal);
-                            System.out.println("Gols: " + gols);
-                            System.out.println("Internacional SI-NO: " + esinternacional);
-                            System.out.println("Clausula: " + clausula);
-                    
-                    }else{
+
+                        System.out.println("\nDades del jugador\n");
+                        System.out.println("Nom: " + nom);
+                        System.out.println("Posició: " + posicio);
+                        System.out.println("Dorsal: " + dorsal);
+                        System.out.println("Gols: " + gols);
+                        System.out.println("Internacional SI-NO: " + esinternacional);
+                        System.out.println("Clausula: " + clausula);
+
+                    } else {
                         System.out.println("\nNo hi han dades per mostrar");
+                    }
+                    break;
+                case 6:
+                    if (!omplit) {
+                        System.out.println("\nAquestes són les dades que vols recuperar\n");
+                        omplit = true;
+                        System.out.println("Nom: " + nom);
+                        System.out.println("Posició: " + posicio);
+                        System.out.println("Dorsal: " + dorsal);
+                        System.out.println("Gols: " + gols);
+                        System.out.println("Internacional SI-NO: " + esinternacional);
+                        System.out.println("Clausula: " + clausula);
+                        System.out.println("\nles vols recuperar ? (S-N)");
+                        do {
+                            esveritat = ent.skip("[\r\n]*").nextLine().toUpperCase().charAt(0);
+                        } while (esveritat != 'S' && esveritat != 'N');
+                        if (veritat = (esveritat == 'S')) {
+                            do {
+
+                            } while (esveritat != 'S' && esveritat != 'N');
+                            System.out.println("\nDades recuperades correctament");
+
+                        } else {
+                            omplit = false;
+                            break;
+                        }
+                    } else {
+                        System.out.println("\nNo hi han dades per recuperar");
                     }
                     break;
                 default:
                     System.out.println("\n\nOpció incorrecta!!");
+
             }
 
         } while (opcio != 1);
