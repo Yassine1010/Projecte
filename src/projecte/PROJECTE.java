@@ -91,20 +91,20 @@ public class PROJECTE {
                 case 3:
                     if (omplit) {
 
-                        System.out.println("\n\nVols veure les dades del jugador abans de borrar? (S/N)");
+                        System.out.print("\nVols veure les dades del jugador abans de borrar? (S/N)");
                         do {
                             esveritat = ent.skip("[\r\n]*").nextLine().toUpperCase().charAt(0);
 
                         } while (esveritat != 'S' && esveritat != 'N');
                         if (veritat = (esveritat == 'S')) {
-                            System.out.println("Dades del jugador\n\n");
+                            System.out.println("\nDades del jugador\n");
                             System.out.println("Nom: " + nom);
                             System.out.println("Posició: " + posicio);
                             System.out.println("Dorsal: " + dorsal);
                             System.out.println("Gols: " + gols);
                             System.out.println("Internacional SI-NO: " + esinternacional);
                             System.out.println("Clausula: " + clausula);
-                            System.out.println("\nVols borrar les dades? (S-N)");
+                            System.out.print("\nVols borrar les dades? (S-N)");
                             do {
                                 esveritat = ent.skip("[\r\n]*").nextLine().toUpperCase().charAt(0);
                             } while (esveritat != 'S' && esveritat != 'N');
@@ -124,7 +124,7 @@ public class PROJECTE {
                             }
 
                         } else {
-                            System.out.println("\nVols borrar les dades? (S-N)");
+                            System.out.print("\nVols borrar les dades? (S-N)");
                             do {
                                 esveritat = ent.skip("[\r\n]*").nextLine().toUpperCase().charAt(0);
                             } while (esveritat != 'S' && esveritat != 'N');
@@ -151,7 +151,7 @@ public class PROJECTE {
                 case 4:
                     if (omplit) {
 
-                        System.out.println("\n\nVols veure les dades del jugador abans de modificar? (S/N)");
+                        System.out.print("\nVols veure les dades del jugador abans de modificar? (S/N)");
                         do {
                             esveritat = ent.skip("[\r\n]*").nextLine().toUpperCase().charAt(0);
 
@@ -166,7 +166,7 @@ public class PROJECTE {
                             System.out.println("Clausula: " + clausula);
                             //////----------------------------------------------//////////
 
-                            System.out.println("\nVols modificar el nom? (S-N)");
+                            System.out.print("\nVols modificar el nom? (S-N)");
                             do {
                                 esveritat = ent.skip("[\r\n]*").nextLine().toUpperCase().charAt(0);
                             } while (esveritat != 'S' && esveritat != 'N');
@@ -174,12 +174,12 @@ public class PROJECTE {
                                 do {
                                     System.out.println("Introdueix el nou nom");
                                     nom = ent.skip("[\r\n]*").nextLine();
-                                    System.out.println("Nou nom: " + nom);
+                                    System.out.println("\nNou nom: " + nom);
                                 } while (esveritat != 'S' && esveritat != 'N');
                             }
                             //////----------------------------------------------//////////
 
-                            System.out.println("\nVols modificar la posició? (S-N)");
+                            System.out.print("\nVols modificar la posició? (S-N)");
                             do {
                                 esveritat = ent.skip("[\r\n]*").nextLine().toUpperCase().charAt(0);
                             } while (esveritat != 'S' && esveritat != 'N');
@@ -208,12 +208,12 @@ public class PROJECTE {
                                         }
                                     } while (posicio != 'A' && posicio != 'M' && posicio != 'D' && posicio != 'P');
 
-                                    System.out.println("Nova posició: " + posicio);
+                                    System.out.println("\nNova posició: " + posicio);
                                 } while (esveritat != 'S' && esveritat != 'N');
                             }
                             //////----------------------------------------------//////////
 
-                            System.out.println("\nVols modificar el dorsal? (S-N)");
+                            System.out.print("\nVols modificar el dorsal? (S-N)");
                             do {
                                 esveritat = ent.skip("[\r\n]*").nextLine().toUpperCase().charAt(0);
                             } while (esveritat != 'S' && esveritat != 'N');
@@ -221,12 +221,12 @@ public class PROJECTE {
                                 do {
                                     System.out.println("Introdueix el nou dorsal");
                                     dorsal = ent.skip("[\r\n]*").nextInt();
-                                    System.out.println("Nou dorsal: " + dorsal);
+                                    System.out.println("\nNou dorsal: " + dorsal);
                                 } while (esveritat != 'S' && esveritat != 'N');
                             }
                             //////----------------------------------------------//////////
 
-                            System.out.println("\nVols modificar el gols? (S-N)");
+                            System.out.print("\nVols modificar el gols? (S-N)");
                             do {
                                 esveritat = ent.skip("[\r\n]*").nextLine().toUpperCase().charAt(0);
                             } while (esveritat != 'S' && esveritat != 'N');
@@ -234,30 +234,30 @@ public class PROJECTE {
                                 do {
                                     System.out.println("Introdueix els gols");
                                     gols = ent.skip("[\r\n]*").nextInt();
-                                    System.out.println("Gols: " + gols);
+                                    System.out.println("\nGols: " + gols);
                                 } while (esveritat != 'S' && esveritat != 'N');
                             }
                             //////----------------------------------------------//////////
 
-                            System.out.println("\nVols modificar si és internacional? (S-N)");
+                            System.out.print("\nVols modificar si és internacional? (S-N)");
                             do {
                                 esveritat = ent.skip("[\r\n]*").nextLine().toUpperCase().charAt(0);
                             } while (esveritat != 'S' && esveritat != 'N');
                             if (veritat = (esveritat == 'S')) {
                                 do {
-                                    System.out.println("És internacional? (S-N)");
+                                    System.out.print("És internacional? (S-N)");
 
                                     do {
                                         esinternacional = ent.skip("[\r\n]*").nextLine().toUpperCase().charAt(0);
 
                                     } while (esinternacional != 'S' && esinternacional != 'N');
                                     internacional = (esinternacional == 'S');
-                                    System.out.println("Internacional: " + esinternacional);
+                                    System.out.println("\nInternacional: " + esinternacional);
                                 } while (esveritat != 'S' && esveritat != 'N');
                             }
                             //////----------------------------------------------//////////
 
-                            System.out.println("\nVols modificar la clausula? (S-N)");
+                            System.out.print("\nVols modificar la clausula? (S-N)");
                             do {
                                 esveritat = ent.skip("[\r\n]*").nextLine().toUpperCase().charAt(0);
                             } while (esveritat != 'S' && esveritat != 'N');
@@ -265,7 +265,7 @@ public class PROJECTE {
                                 do {
                                     System.out.println("Introdueix la nova clausula");
                                     clausula = ent.skip("[\r\n]*").nextDouble();
-                                    System.out.println("Nova clausula: " + clausula);
+                                    System.out.println("\nNova clausula: " + clausula);
                                 } while (esveritat != 'S' && esveritat != 'N');
                                 System.out.println("\nDades modificades correctament");
                             } else {
@@ -302,7 +302,7 @@ public class PROJECTE {
                         System.out.println("Gols: " + gols);
                         System.out.println("Internacional SI-NO: " + esinternacional);
                         System.out.println("Clausula: " + clausula);
-                        System.out.println("\nles vols recuperar ? (S-N)");
+                        System.out.print("\nles vols recuperar? (S-N)");
                         do {
                             esveritat = ent.skip("[\r\n]*").nextLine().toUpperCase().charAt(0);
                         } while (esveritat != 'S' && esveritat != 'N');
@@ -310,7 +310,7 @@ public class PROJECTE {
                             do {
 
                             } while (esveritat != 'S' && esveritat != 'N');
-                            System.out.println("\nDades recuperades correctament");
+                            System.out.println("\nDades recuperades correctament!!");
 
                         } else {
                             omplit = false;
