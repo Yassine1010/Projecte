@@ -151,7 +151,7 @@ public class PROJECTE {
                 case 4:
                     if (omplit) {
 
-                        System.out.print("\nVols veure les dades del jugador abans de modificar? (S/N)");
+                        System.out.print("\nVols modificar les dades? (S/N)");
                         do {
                             esveritat = ent.skip("[\r\n]*").nextLine().toUpperCase().charAt(0);
 
