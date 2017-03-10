@@ -13,10 +13,17 @@ import java.util.Scanner;
  */
 public class PROJECTE {
 
+    public static final int MAX_JUGADORS = 2;
+    
+    private static Jugador[] array=new Jugador[MAX_JUGADORS];
+     
+    private static int opcio;
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+    
         // variables
         Scanner ent = new Scanner(System.in);
         String nom = null;
@@ -328,5 +335,6 @@ public class PROJECTE {
         } while (opcio != 1);
 
     }
-
+    
+   
 }
