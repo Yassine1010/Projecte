@@ -104,6 +104,10 @@ public class Jugador {
         this.veritat = veritat;
     }
     
+    public boolean isOmplit() {
+        return omplit;
+    }
+    
     public void setOmplit(boolean omplit) {
         this.omplit = omplit;
     }
