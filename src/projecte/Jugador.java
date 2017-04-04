@@ -9,20 +9,22 @@ package projecte;
  *
  * @author alumne
  */
-public class Jugador {
+public class Jugador implements java.io.Serializable{
 
     //les meves propietats
-    private String nom = null;
+    private String nom= null;
     private char posicio = 0;
-    private char esinternacional = 0;
     private int opcio = 0;
     private int dorsal = 0;
     private int gols = 0;
     private boolean internacional = false;
     private double clausula = 0.0;
-    private char esveritat = 0;
     private boolean veritat = false;
-    private boolean omplit;
+    private boolean omplit = false;
+
+    
+    public Jugador(){
+    }
 
     public String getNom() {
         return nom;
@@ -38,14 +40,6 @@ public class Jugador {
 
     public void setPosicio(char posicio) {
         this.posicio = posicio;
-    }
-
-    public char getEsinternacional() {
-        return esinternacional;
-    }
-
-    public void setEsinternacional(char esinternacional) {
-        this.esinternacional = esinternacional;
     }
 
     public int getOpcio() {
@@ -86,14 +80,6 @@ public class Jugador {
 
     public void setClausula(double clausula) {
         this.clausula = clausula;
-    }
-
-    public char getEsveritat() {
-        return esveritat;
-    }
-
-    public void setEsveritat(char esveritat) {
-        this.esveritat = esveritat;
     }
 
     public boolean isVeritat() {
