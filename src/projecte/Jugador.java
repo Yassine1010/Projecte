@@ -13,7 +13,7 @@ public class Jugador implements java.io.Serializable{
 
     //les meves propietats
     private String nom= null;
-    private char posicio = 0;
+    private char posicio = ' ';
     private int opcio = 0;
     private int dorsal = 0;
     private int gols = 0;
