@@ -458,6 +458,10 @@ public class GUI_exemple extends javax.swing.JFrame {
     private void botoinserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoinserirActionPerformed
         // TODO add your handling code here:
         //busquem la primera casella buida de la longitud de l'array per a les insertar dades
+       if(!dadesCorrectes()){
+        JOptionPane.showMessageDialog(this, "Dades de les caselles incorrectes!");
+        return;
+        }
         Jugador[] array=PROJECTE.getArray();   
         for (primeraBuida = 0; primeraBuida < array.length && array[primeraBuida].isOmplit(); primeraBuida++);
                    
@@ -487,7 +491,9 @@ GUI_UF3.carregaTaula(new String[]{"Fila","Nom", "Posició", "Dorsal", "Gols","In
             clausula.setText("");
             internacionalsi.setSelected(true);
             esdelanter.setSelected(true);
-               
+               //Desactivo els botons perque despres de clicar en borrar es com si no tiguem cap fila seleccionada
+            botoborrar.setEnabled(false);
+            botomodificar.setEnabled(false);
     }//GEN-LAST:event_botoinserirActionPerformed
 
     private void botoborrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoborrarActionPerformed
@@ -502,6 +508,13 @@ GUI_UF3.carregaTaula(new String[]{"Fila","Nom", "Posició", "Dorsal", "Gols","In
         GUI_UF3.carregaTaula(new String[]{"Fila","Nom", "Posició", "Dorsal", "Gols","Internacional","Clausula"}, 
                 transformaDades(PROJECTE.getArray())
                 , taula);
+        //Posem les caselles buides despres d'insertar
+            Nom.setText("");
+            dorsal.setText("");
+            gols.setText("");
+            clausula.setText("");
+            internacionalsi.setSelected(true);
+            esdelanter.setSelected(true);
        //Desactivo els botons perque despres de clicar en borrar es com si no tiguem cap fila seleccionada
             botoborrar.setEnabled(false);
             botomodificar.setEnabled(false);
@@ -516,6 +529,9 @@ GUI_UF3.carregaTaula(new String[]{"Fila","Nom", "Posició", "Dorsal", "Gols","In
             clausula.setText("");
             internacionalsi.setSelected(true);
             esdelanter.setSelected(true);
+            
+            botoborrar.setEnabled(false);
+            botomodificar.setEnabled(false);
     }//GEN-LAST:event_nouActionPerformed
 
     private void esmigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esmigActionPerformed
