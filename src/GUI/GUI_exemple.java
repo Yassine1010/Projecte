@@ -444,7 +444,7 @@ public class GUI_exemple extends javax.swing.JFrame {
            // TODO add your handling code here:
            
            PROJECTE.finalitzar();
-           System.exit(1);
+           System.exit(0);
     }//GEN-LAST:event_botosortirActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
