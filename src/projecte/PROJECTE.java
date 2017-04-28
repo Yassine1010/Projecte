@@ -450,8 +450,14 @@ public static void modificarJugador() {
     }
 
     public static void llistarJugador() {
-        int i=0;
-        if (array[i].isOmplit()) {
+       
+        Scanner ent = new Scanner(System.in);
+
+        boolean algun = false;
+        char siNo = 'S';
+        int i;
+        for (i = 0; i < array.length; i++) {
+            if (array[i].isOmplit()) {
 
                 System.out.println("\nDades del jugador\n");
                             System.out.println("Nom: " + array[i].getNom());
@@ -460,10 +466,21 @@ public static void modificarJugador() {
                             System.out.println("Gols: " + array[i].getGols());
                             System.out.println("Internacional SI-NO: " + array[i].isInternacional());
                             System.out.println("Clausula: " + array[i].getClausula());
+                do {
+                    System.out.println("\nVols veure més jugadors(S/N)?:");
+                    siNo = ent.skip("[\r\n]*").nextLine().toUpperCase().charAt(0); //usem toUpperCase() que traduix el text introduït per l'usuari a majúscules, 
+                    //per tant només haurem de tractar les lletres majúscules
+                } while (siNo != 'S' && siNo != 'N');
+            }
+            if (siNo == 'N') {
+                break;
+            }
+        }
+        if (!algun) {
+            System.out.println("\nNo hi han dades per mostrar");
+}
+        
 
-                    } else {
-                        System.out.println("\nNo hi han dades per mostrar");
-                    }
     }
 
     public static void recuperarJugador() {
