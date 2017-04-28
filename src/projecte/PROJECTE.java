@@ -14,7 +14,14 @@ package projecte;
  * and open the template in the editor.
  */
 
-
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
 /**
@@ -23,12 +30,13 @@ import java.util.Scanner;
  */
 public class PROJECTE{
 
-    public static final int MAX_JUGADORS = 2;
+    public static final int MAX_JUGADORS = 200;
 
     private static Jugador[] array = new Jugador[MAX_JUGADORS];
 
     private static int opcio;
     
+    private static File fitxer=new File("jugadors.db");
     
     public static Jugador[] getArray(){
     
@@ -47,13 +55,59 @@ public class PROJECTE{
         } while (!opcioFinal());
     }
 
-    public static void inicialitzarVariables() {
-
+    public static int inicialitzarVariables() {
+        int i=0;
+        if(fitxer.exists()){
+            //L'usem per si no caben els objectes del fitxer a l'array poder finalitzar l'execució
+            boolean acabar=false;
+            
+            //Obrim el fitxer per lectura
+            ObjectInputStream lectura=null;
+            try{
+                //Obrim el fitxer per lectura
+                lectura=new ObjectInputStream(new BufferedInputStream(new FileInputStream(fitxer)));
+                
+                while(true){
+                    array[i]=(Jugador) lectura.readObject();
+                    //Incrementar la i per separat ja que sinó dixem una casella a null
+                    i++;
+                }
+            } catch (ArrayIndexOutOfBoundsException ex) {
+                //Si entrem aquí és per que al fitxer hi ha més pilots que els que caben a l'array. 
+                //Podríem avisar a l'usuari i dixar que tanque l'aplicació ja que sinó pot perdre dades...
+                System.err.println("Atenció, no caben tots els objectes. Si continues pots perdre dades. Vols continuar?(S/N):");
+                Scanner ent = new Scanner(System.in);
+                char siNo=' ';
+                do {                    
+                    siNo = ent.skip("[\r\n]*").nextLine().toUpperCase().charAt(0); //usem toUpperCase() que traduix el text introduït per l'usuari a majúscules, 
+                    //per tant només haurem de tractar les lletres majúscules
+                } while (siNo != 'S' && siNo != 'N');
+                if(siNo=='N') acabar=true;
+                
+            } catch (IOException ex) {
+                //Aquí no cal fer res ja que significa que hem arribat al final del fitxer
+            } catch (ClassNotFoundException ex) {
+                //Aquí tampoc cal fer res ja que significa que el fitxer llegit no conté objectes de la classe Pilot
+            }finally{
+                try {
+                    //Molt important tancar el fitxer de lectura
+                    if(lectura!=null) lectura.close();
+                } catch (IOException ex) {
+                    //No cal mostrar res
+                }
+                //Si hem decidit acabar parem l'execucuió
+                if(acabar) System.exit(0);
+            }
+        
+        }
+        int primeraBuida=i;
         //Inicialitzem l'array en nous pilots sense dades
-        for (int i = 0; i < array.length; i++) {
+        for (; i < array.length; i++) {
             array[i] = new Jugador();
             array[i].setOmplit(false);
         }
+        
+        return primeraBuida;
     }
 
     public static void demanarOpcio() {
@@ -75,6 +129,7 @@ public class PROJECTE{
         switch (opcio) {
             case 0:                             //0. Sortir
                 System.out.println("Has sortit del programa!");
+                finalitzar();
                 break;
             case 1:                             //1. Introduïr pilot
                 introduirJugador();
@@ -100,6 +155,36 @@ public class PROJECTE{
     public static boolean opcioFinal() {
         return opcio == 0;
     }
+    
+    public static void finalitzar(){
+        //Obrim el fitxer per escriptura
+        ObjectOutputStream escriptura=null;
+        try{
+            //Obrim el fitxer
+            escriptura=new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(fitxer)));
+
+            //Recorrem l'array guardant els objectes vàlids al fitxer
+            for(int i=0;i<array.length;i++){
+                //Guardem al fitxer els pilots omplits
+                if(array[i].isOmplit())escriptura.writeObject(array[i]);
+            }
+        } catch (IOException ex) {
+            //Aquí podem avisar a l'usuari de que no s'han guardat les dades
+            System.err.println("Error en guardar les dades!!");
+        } finally{
+            try {
+                //Molt important tancar el fitxer d'escriptura
+                if(escriptura!=null) escriptura.close();
+            } catch (IOException ex) {
+                //No cal mostrar res
+            }
+
+        }
+
+        //Missatge de comiat
+        System.out.println("Adéu!!");
+
+    }
 
 
     public static void introduirJugador() {
@@ -107,13 +192,13 @@ public class PROJECTE{
         char posicio;
         int i;
         for (i = 0; i < array.length && array[i].isOmplit(); i++);
-        if (!array[i].isOmplit()) {
+        if (i < array.length) {
             System.out.println("Introdueix el nom del jugador");
             array[i].setNom(ent.skip("[\r\n]*").nextLine());
             do {
                 System.out.println("Introdueix la seva posició al camp: A = Delanter, M = Migcampista, D = Defensa, P = Porter. ");
-                array[i].setPosicio (ent.skip("[\r\n]*").nextLine().toUpperCase().charAt(0));  
-                array[i].setPosicio(posicio='A');
+                array[i].setPosicio (posicio=ent.skip("[\r\n]*").nextLine().toUpperCase().charAt(0));  
+                //array[i].setPosicio(posicio='A');
                 switch (posicio) {
                     case 'A':
                         System.out.println("Delanter");
@@ -368,7 +453,7 @@ public static void modificarJugador() {
         int i=0;
         if (array[i].isOmplit()) {
 
-System.out.println("\nDades del jugador\n");
+                System.out.println("\nDades del jugador\n");
                             System.out.println("Nom: " + array[i].getNom());
                             System.out.println("Posició: " + array[i].getPosicio());
                             System.out.println("Dorsal: " + array[i].getDorsal());
