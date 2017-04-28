@@ -20,6 +20,7 @@ import static projecte.PROJECTE.inicialitzarVariables;
 public class GUI_exemple extends javax.swing.JFrame {
     //usada per saber si hi ha alguna fila de la taula seleccionada, i quina es
     private static int filSel=-1;
+    //index que indica la primera casella buida de l'array
     private static int primeraBuida;
     /**
      * Creates new form GUI_exemple
@@ -57,7 +58,7 @@ public class GUI_exemple extends javax.swing.JFrame {
                 omplits++;
             }
         }
-        //Retornem només els pilots plens
+        //Retornem només els jugadors plens
         return Arrays.copyOf(resultat,omplits);
     
     }
@@ -369,7 +370,7 @@ public class GUI_exemple extends javax.swing.JFrame {
                     esporter.setSelected(true);
                     break;
             }
-            dorsal.setText(String.valueOf(taula.getValueAt(filSel, 3))); //per a numeros
+            dorsal.setText(String.valueOf(taula.getValueAt(filSel, 3))); //string.valueof..per a numeros
             gols.setText(String.valueOf(taula.getValueAt(filSel, 4)));           
             if((boolean)taula.getValueAt(filSel, 5))
                 internacionalsi.setSelected(true);
@@ -392,7 +393,6 @@ public class GUI_exemple extends javax.swing.JFrame {
         Integer.valueOf(dorsal.getText());
         Integer.valueOf(gols.getText());
         Double.valueOf(clausula.getText());
-        //falten..
     } catch (StringIndexOutOfBoundsException|NumberFormatException e) {
         return false;
     }
@@ -411,6 +411,7 @@ public class GUI_exemple extends javax.swing.JFrame {
       int iArray=(int)taula.getValueAt(filSel, 0);
       Jugador[] array=PROJECTE.getArray();
       array[iArray].setNom(Nom.getText()); 
+      //segons el boto que tenim seleccionat omplim la posicio amb els diferents camps seguents
       if (esdelanter.isSelected()){
       array[iArray].setPosicio('A');}
       if (esmig.isSelected()){
@@ -431,7 +432,7 @@ public class GUI_exemple extends javax.swing.JFrame {
                 transformaDades(PROJECTE.getArray())
                 , taula);
       JOptionPane.showMessageDialog(this, "Dades modificades!");
-       //si no han seleccionat cap fila desactivo els botonos de borrar i modificar
+       //Desactivo els botons perque despres de clicar en modificar es com si no tiguem cap fila seleccionada
             botoborrar.setEnabled(false);
             botomodificar.setEnabled(false);
     }//GEN-LAST:event_botomodificarActionPerformed
@@ -456,9 +457,10 @@ public class GUI_exemple extends javax.swing.JFrame {
 
     private void botoinserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoinserirActionPerformed
         // TODO add your handling code here:
+        //busquem la primera casella buida de la longitud de l'array per a les insertar dades
         Jugador[] array=PROJECTE.getArray();   
         for (primeraBuida = 0; primeraBuida < array.length && array[primeraBuida].isOmplit(); primeraBuida++);
-                    
+                   
                 array[primeraBuida].setNom(Nom.getText());
                 if (esdelanter.isSelected()){
                 array[primeraBuida].setPosicio('A');}
@@ -500,13 +502,14 @@ GUI_UF3.carregaTaula(new String[]{"Fila","Nom", "Posició", "Dorsal", "Gols","In
         GUI_UF3.carregaTaula(new String[]{"Fila","Nom", "Posició", "Dorsal", "Gols","Internacional","Clausula"}, 
                 transformaDades(PROJECTE.getArray())
                 , taula);
-        //si no han seleccionat cap fila desactivo els botonos de borrar i modificar
+       //Desactivo els botons perque despres de clicar en borrar es com si no tiguem cap fila seleccionada
             botoborrar.setEnabled(false);
             botomodificar.setEnabled(false);
     }//GEN-LAST:event_botoborrarActionPerformed
 
     private void nouActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nouActionPerformed
         // TODO add your handling code here:
+        //Aquest boto serveix per posar les caselles buides 
             Nom.setText("");
             dorsal.setText("");
             gols.setText("");
