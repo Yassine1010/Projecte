@@ -491,7 +491,7 @@ GUI_UF3.carregaTaula(new String[]{"Fila","Nom", "Posició", "Dorsal", "Gols","In
             clausula.setText("");
             internacionalsi.setSelected(true);
             esdelanter.setSelected(true);
-               //Desactivo els botons perque despres de clicar en borrar es com si no tiguem cap fila seleccionada
+               //Desactivo els botons perque despres de clicar en inserir es com si no tiguem cap fila seleccionada
             botoborrar.setEnabled(false);
             botomodificar.setEnabled(false);
     }//GEN-LAST:event_botoinserirActionPerformed
